@@ -1,0 +1,31 @@
+{
+  "name": "plus.deploy",
+  "version": "1.0.0",
+  "description": "Deployment instrument based on torrent transport",
+  "main": "index.js",
+  "bin": {
+    "plus.deploy": "./bin/console.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slavahatnuke/plus.deploy.git"
+  },
+  "keywords": [
+    "torrent",
+    "deploy",
+    "deployment"
+  ],
+  "author": "slava hatnuke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slavahatnuke/plus.deploy/issues"
+  },
+  "homepage": "https://github.com/slavahatnuke/plus.deploy#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "plus.application": "^1.1.14"
+  }
+}
