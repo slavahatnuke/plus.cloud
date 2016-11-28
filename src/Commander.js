@@ -27,18 +27,27 @@ module.exports = (app) => {
 
     program.command('init')
         .description('init config file')
-        .action((command) => app.DeployService.init().then(done, done));
+        .action(() => app.DeployService.init().then(done, done));
+
+    program.command('download [magnet]')
+        .description('init config file')
+        .action((magnet) => app.DeployService.download(magnet).then(done, done));
+
+    program.command('stamp [dir]')
+        .description('dev')
+        .action((dir) => app.DeployService.stamp(dir).then(done, done));
 
     program.command('deploy')
         .description('deploy it')
         .action((command) => app.DeployService.deploy().then(done, (err) => {
             setTimeout(() => {
                 console.log('ERROR >');
-                console.log(err);
+                console.log(err, err.stack);
                 console.log('\n');
                 process.exit(1);
             }, 1000);
         }));
 
+    
     return program;
 };
