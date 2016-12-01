@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    volumes:
+    - .:/project
+    command: "plus.shell --host child run -- echo ok"
+    links:
+      - child
+
+  child:
+    build: .
+    volumes:
+    - .:/project
+    command: plus.shell start
+    expose:
+     - "10022"
+
