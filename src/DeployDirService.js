@@ -22,7 +22,7 @@ module.exports = class DeployDirService {
     }
 
     getFilesDir() {
-        return this.base + '/version';
+        return this.base + '/files';
     }
 
 };

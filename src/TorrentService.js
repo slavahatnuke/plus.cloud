@@ -3,8 +3,8 @@
 var WebTorrent = require('webtorrent');
 
 module.exports = class TorrentService {
-    constructor() {
-
+    constructor(PublisherServer) {
+        this.PublisherServer = PublisherServer;
     }
 
     getClient() {
@@ -15,32 +15,38 @@ module.exports = class TorrentService {
 
     download(magnet, to) {
         return this.getClient().then((client) => {
-            var opts = this.getTorrentOptions();
-            opts.path = to;
+            return this.getTorrentOptions().then((options) => {
+                options.path = to;
 
-            return new Promise((resolve, reject) => {
-                client.add(magnet, opts, (torrent) => {
-                    torrent.on('done', () => resolve(torrent));
+                return new Promise((resolve, reject) => {
+                    client.add(magnet, options, (torrent) => {
+                        torrent.on('done', () => resolve(torrent));
+                    });
                 });
             });
         });
     }
 
     seed(path) {
-        return this.getClient().then((client) => {
-            return new Promise((resolve, reject) => {
-                client.seed(path, this.getTorrentOptions(), (torrent) => {
-                    resolve(torrent);
-                });
+        return this.getClient()
+            .then((client) => {
+                return this.getTorrentOptions()
+                    .then((options) => {
+                        return new Promise((resolve, reject) => {
+                            client.seed(path, options, (torrent) => {
+                                resolve(torrent);
+                            });
+                        });
+                    });
             });
-        });
     }
 
     getTorrentOptions() {
-        var opts = {
-            announce: ['http://localhost:8000/announce']
-        };
-        return opts;
+        return Promise.resolve().then(() => {
+            return {
+                announce: this.PublisherServer.getTrackerUrls()
+            };
+        });
     }
 
 };
