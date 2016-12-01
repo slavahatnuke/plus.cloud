@@ -1,33 +1,36 @@
 {
-  "name": "plus.deploy",
+  "name": "plus.cloud",
   "version": "1.0.0",
-  "description": "Deployment instrument based on torrent transport",
+  "description": "Cloud based on torrent transport and docker",
   "main": "index.js",
   "bin": {
-    "plus.deploy": "./bin/console.js"
+    "plus.cloud": "./bin/console.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'Cloud based on torrent transport and docker'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slavahatnuke/plus.deploy.git"
+    "url": "git+https://github.com/slavahatnuke/plus.cloud.git"
   },
   "keywords": [
+    "cloud",
     "torrent",
+    "docker",
     "deploy",
     "deployment"
   ],
   "author": "slava hatnuke",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/slavahatnuke/plus.deploy/issues"
+    "url": "https://github.com/slavahatnuke/plus.cloud/issues"
   },
-  "homepage": "https://github.com/slavahatnuke/plus.deploy#readme",
+  "homepage": "https://github.com/slavahatnuke/plus.cloud#readme",
   "dependencies": {
     "commander": "^2.9.0",
     "event-stream": "^3.3.4",
     "fs-extra": "^1.0.0",
+    "glob": "^7.1.1",
     "gunzip-maybe": "^1.3.1",
     "jsonwebtoken": "^7.1.9",
     "plus.application": "^1.1.14",

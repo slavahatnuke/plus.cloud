@@ -1,2 +1,2 @@
-# plus deploy
-Deployment instrument based on torrent transport
+# plus cloud
+Cloud based on torrent transport and docker

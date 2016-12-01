@@ -2,14 +2,15 @@
 
 module.exports = class ShService {
 
-    call(command, stringArguments, toStream) {
+    call(command, options, toStream) {
         var exec = require('child_process').exec;
-        stringArguments = stringArguments || '';
+
+        options = Object.assign({
+            maxBuffer: 1024 * 1024 * 1024 * 1024 * 1024
+        }, options || {});
 
         return new Promise((resolve, reject) => {
-            var process = exec(command + ' ' + stringArguments, {
-                maxBuffer: 1024 * 1024 * 1024 * 1024 * 1024
-            }, (err) => {
+            var process = exec(command, options, (err) => {
                 if (err) {
                     return reject(err);
                 }
@@ -24,7 +25,7 @@ module.exports = class ShService {
     }
 
     has(command) {
-        return this.call('which', command).then(() => true, () => false);
+        return this.call('which ' + command).then(() => true, () => false);
     }
 
 };
